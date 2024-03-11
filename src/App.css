@@ -175,10 +175,11 @@
 
 .backgroundAnimation {
   animation-name: backColor;
-  animation-duration: 6s;
+  animation-duration: 3s;
   animation-delay: 1s;
-  animation-iteration-count: 1;
+  animation-iteration-count: infinite;
   animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
 }
 
 @keyframes backColor {
@@ -186,46 +187,96 @@
     background: linear-gradient(to bottom, black, black);
   }
 
-  10% {
-    background-color: red;
-    background: linear-gradient(to bottom, black, red);
+  3.125% {
+    background: radial-gradient(circle at 100%, black 0%, black 4%, rgb(199, 87, 49)5%, blue 20%, red 40%, purple 60%, black 61%);
   }
 
-  20% {
-    background-color: purple;
-    background: linear-gradient(to bottom, black, purple);
+  6.25% {
+    background: radial-gradient(circle at 97.5%, black 0%, black 4.5%, rgb(199, 87, 49)5%, blue 21%, red 41%, purple 61%, black 62%);
   }
 
-  30% {
-    background-color: blue;
-    background: linear-gradient(to bottom, black, blue);
+  9.375% {
+    background: radial-gradient(circle at 95%, black 0%, black 5%, rgb(199, 87, 49)6%, blue 22%, red 42%, purple 62%, black 63%);
   }
 
-  40% {
-    background-color: pink;
-    background: linear-gradient(to bottom, black, pink);
+  12.5% {
+    background: radial-gradient(circle at 92.5%, black 0%, black 5.5%, rgb(199, 87, 49)6%, blue 23%, red 43%, purple 63%, black 64%);
+  }
+
+  15.625% {
+    background: radial-gradient(circle at 90%, black 0%, black 6%, rgb(184, 80, 46)5%, rgb(0, 0, 245) 24%, red 44%, purple 64%, black 65%);
+  }
+
+  18.75% {
+    background: radial-gradient(circle at 87.5%, black 0%, black 6.5%, rgb(184, 80, 46)5%, rgb(0, 0, 245) 25%, red 45%, purple 65%, black 66%);
+  }
+
+  21.825% {
+    background: radial-gradient(circle at 85%, black 0%, black 7%, rgb(184, 80, 46)8%, rgb(0, 0, 245) 26%, red 46%, purple 66%, black 67%);
+  }
+
+  25% {
+    background: radial-gradient(circle at 82.5%, black 0%, black 7.5%, rgb(148, 65, 37)8.5%, rgb(0, 0, 245) 27%, red 47%, purple 67%, black 68%);
+  }
+
+  31.25% {
+    background: radial-gradient(circle at 80%, black 0%, black 8%, rgb(152, 66, 38) 9%, rgb(0, 0, 190) 28%, rgb(210, 0, 0) 48%, rgb(114, 0, 114) 68%, black 69%);
+  }
+
+  37.5% {
+    background: radial-gradient(circle at 77.5%, black 0%, black 8.5%, rgb(155, 67, 38) 9.5%, rgb(0, 0, 190) 29%, rgb(210, 0, 0) 49%, rgb(114, 0, 114) 69%, black 70%);
+  }
+
+  40.625% {
+    background: radial-gradient(circle at 75%, black 0%, black 9%, rgb(158, 69, 40) 10%, rgb(0, 0, 180) 30%, rgb(210, 0, 0) 50%, rgb(114, 0, 114) 70%, black 71%);
+  }
+
+  43.75% {
+    background: radial-gradient(circle at 72.5%, black 0%, black 10%, rgb(174, 77, 44) 11%, rgb(0, 0, 180) 31%, rgb(210, 0, 0) 51%, rgb(114, 0, 114) 71%, black 72%);
+  }
+
+  46.875% {
+    background: radial-gradient(circle at 70%, black 0%, black 12%, rgb(178, 79, 45) 13%, rgb(0, 0, 180) 32%, rgb(210, 0, 0) 52%, rgb(114, 0, 114) 72%, black 73%);
   }
 
   50% {
-    background-color: darkorange;
-    background: linear-gradient(to bottom, black, darkorange);
+    background: radial-gradient(circle at 67.5%, black 0%, black 12%, rgb(181, 80, 47) 13%, rgb(0, 0, 180) 33%, rgb(210, 0, 0) 53%, rgb(114, 0, 114) 73%, black 74%);
   }
 
-  60% {
-    background-color: greenyellow;
-    background: linear-gradient(to bottom, black, greenyellow, greenyellow);
+  62.5% {
+    background: radial-gradient(circle at 65%, black 0%, black 14%, rgb(185, 83, 49) 15%, rgb(0, 0, 132) 34%, rgb(187, 0, 0) 54%, rgb(101, 0, 101) 74%, black 75%);
   }
 
-  70% {
-    background-color: gold;
+  75% {
+    background: radial-gradient(circle at 60%, black 0%, black 19%, rgb(187, 82, 47) 20%, rgb(0, 0, 132) 35%, rgb(187, 0, 0) 55%, rgb(101, 0, 101) 75%, black 76%);
   }
 
   80% {
-    background-color: blueviolet;
+    background: radial-gradient(circle at 50%, rgb(0, 0, 0) 0%, black 24%, rgb(190, 83, 48) 25%, rgb(0, 0, 123) 40%, rgb(124, 0, 0) 60%, rgb(87, 0, 87) 95%, black 96%);
+  }
+
+  82.5% {
+    background: radial-gradient(circle at 50%, rgb(0, 0, 0) 0%, black 25%, rgb(194, 85, 49) 26%, rgb(0, 0, 123) 60%, rgb(124, 0, 0) 70%, rgb(87, 0, 87) 100%);
+  }
+
+  85% {
+    background: radial-gradient(circle at 50%, rgb(0, 0, 0) 0%, black 50%, rgb(197, 87, 50) 51%, rgb(0, 0, 123) 80%, rgb(124, 0, 0) 100%);
+  }
+
+  90% {
+    background: radial-gradient(circle at 50%, rgb(0, 0, 0) 0%, black 75%, rgb(199, 90, 53) 77%rgb(0, 0, 123) 100%);
+  }
+
+  95% {
+    background: radial-gradient(circle at 50%, rgb(0, 0, 0) 0%, black 78%, rgb(0, 0, 123) 200%);
+  }
+
+  97.5% {
+    background: radial-gradient(circle at 50%, rgb(0, 0, 0) 0%, black 80%, rgb(0, 0, 123) 400%);
   }
 
   100% {
-    background-color: black;
+    background: radial-gradient(circle at 50%, black 0%, black 100%);
   }
 }
 
@@ -309,9 +360,18 @@
     transform: scale(0.5);
   }
 
+  95% {
+    transform: scale(0.1);
+  }
+
+  97% {
+    transform: scale(0.0001);
+  }
+
   100% {
     top: 0;
     left: 0;
+    transform: scale(0.000000000001);
   }
 }
 
