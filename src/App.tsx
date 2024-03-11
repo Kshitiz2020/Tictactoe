@@ -5,6 +5,7 @@ const filledSquares: number[] = [];
 const App = () => {
   const [state, setState] = useState(Array(9).fill(null));
   const [currentTurn, setCurrentTurn] = useState("X");
+  const [disable, setDisable] = useState(false);
 
   const checkWinner = (state: string[]) => {
     const win = [
@@ -51,6 +52,7 @@ const App = () => {
       element2.classList.add('flipBoard')!;
       const congrats = document.getElementById('congrats')!;
       congrats.classList.add('visible');
+      setDisable(true);
       return
     }
     else if (tie) {
@@ -63,24 +65,30 @@ const App = () => {
     <>
       <div className="heading" id="heading">
         <div className="nameOfTheGame">Tic Tac Toe</div>
-        <div className="congrats" id="congrats">We have a winner! Congrats {currentTurn}!</div>
       </div>
       <div className="board" id="board">
+        <div className="spaceHolder">
+          <div className="congrats" id="congrats">We have a winner!
+            <p>
+              Congrats {currentTurn}!
+            </p>
+          </div>
+        </div>
         <div className="rows" id="rows">
           <div className="row">
-            <Block onClick={() => handleClick(0)} value={state[0]} />
-            <Block onClick={() => handleClick(1)} value={state[1]} />
-            <Block onClick={() => handleClick(2)} value={state[2]} />
+            <Block onClick={() => handleClick(0)} value={state[0]} disable={disable} />
+            <Block onClick={() => handleClick(1)} value={state[1]} disable={disable} />
+            <Block onClick={() => handleClick(2)} value={state[2]} disable={disable} />
           </div>
           <div className="row">
-            <Block onClick={() => handleClick(3)} value={state[3]} />
-            <Block onClick={() => handleClick(4)} value={state[4]} />
-            <Block onClick={() => handleClick(5)} value={state[5]} />
+            <Block onClick={() => handleClick(3)} value={state[3]} disable={disable} />
+            <Block onClick={() => handleClick(4)} value={state[4]} disable={disable} />
+            <Block onClick={() => handleClick(5)} value={state[5]} disable={disable} />
           </div>
           <div className="row">
-            <Block onClick={() => handleClick(6)} value={state[6]} />
-            <Block onClick={() => handleClick(7)} value={state[7]} />
-            <Block onClick={() => handleClick(8)} value={state[8]} />
+            <Block onClick={() => handleClick(6)} value={state[6]} disable={disable} />
+            <Block onClick={() => handleClick(7)} value={state[7]} disable={disable} />
+            <Block onClick={() => handleClick(8)} value={state[8]} disable={disable} />
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@
   border: 0;
   margin: 0;
   box-sizing: border-box;
+  font-size: large;
 }
 
 .root {
@@ -18,21 +19,23 @@
   height: 100px;
   width: 100px;
   cursor: pointer;
-
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 35px;
   font-weight: bold;
+  background-color: transparent;
 }
 
 .board {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: black;
   perspective: 1000px;
-  height: 70vh;
+  height: 80vh;
+  width: 100vw;
 }
 
 .heading {
@@ -40,9 +43,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 30vh;
+  height: 20vh;
+  width: 100vw;
   perspective: 1000px;
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   overflow: hidden;
 }
 
@@ -63,31 +67,64 @@
 
 .congrats {
   display: none;
-  margin: 10vh 0 0 0;
-  color: white;
+  margin: 5vh 0;
+  color: whitesmoke;
+  position: relative;
   animation-name: winner;
-  animation-duration: 6s;
+  animation-duration: 8s;
   animation-delay: 0s;
-  animation-iteration-count: infinite;
+  animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
 
 @keyframes winner {
   0% {
-    transform: scale(3);
+    top: 0;
+    left: 0;
+    transform: scale(2.5);
   }
 
-  50% {
+  20% {
+    top: 0;
+    left: 0;
     transform: scale(1);
   }
 
+  40% {
+    top: 0;
+    left: 0;
+    transform: scale(2.5);
+  }
+
+  60% {
+    top: 0;
+    left: 0;
+    transform: scale(1);
+  }
+
+  80% {
+    top: 0;
+    left: 0;
+    transform: scale(2.5);
+  }
+
   100% {
-    transform: scale(3);
+    top: 0;
+    left: 70vw;
   }
 }
 
+.spaceHolder {
+  height: 135px;
+  width: 100vw;
+  overflow: hidden;
+}
+
 .visible {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 @keyframes moveIt {
@@ -146,31 +183,37 @@
 
 @keyframes backColor {
   0% {
-    background-color: rgb(0, 0, 0);
+    background: linear-gradient(to bottom, black, black);
   }
 
   10% {
     background-color: red;
+    background: linear-gradient(to bottom, black, red);
   }
 
   20% {
-    background-color: purple
+    background-color: purple;
+    background: linear-gradient(to bottom, black, purple);
   }
 
   30% {
     background-color: blue;
+    background: linear-gradient(to bottom, black, blue);
   }
 
   40% {
     background-color: pink;
+    background: linear-gradient(to bottom, black, pink);
   }
 
   50% {
     background-color: darkorange;
+    background: linear-gradient(to bottom, black, darkorange);
   }
 
   60% {
     background-color: greenyellow;
+    background: linear-gradient(to bottom, black, greenyellow, greenyellow);
   }
 
   70% {
@@ -193,6 +236,7 @@
   width: 300px;
   background: linear-gradient(to top, #4d3f10, #aa8a23);
   position: relative;
+  overflow: hidden;
 }
 
 .flipBoard {
@@ -210,11 +254,15 @@
   }
 
   5% {
-    transform: scale(5);
+    transform: scale(0.5);
   }
 
   10% {
     transform: rotatex(270deg);
+  }
+
+  15% {
+    transform: scale(4);
   }
 
   20% {
@@ -247,10 +295,18 @@
     transform: rotatey(270deg);
   }
 
+  75% {
+    transform: scale(2);
+  }
+
   80% {
     top: 60px;
     left: 20px;
     transform: rotatex(-180deg);
+  }
+
+  90% {
+    transform: scale(0.5);
   }
 
   100% {
