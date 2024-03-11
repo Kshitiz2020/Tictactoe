@@ -1,10 +1,10 @@
-import "./App.css";
-import { useState } from "react";
-import Block from "./components/Block";
+import './App.css';
+import { useState } from 'react';
+import Block from './components/Block';
 const filledSquares: number[] = [];
 const App = () => {
   const [state, setState] = useState(Array(9).fill(null));
-  const [currentTurn, setCurrentTurn] = useState("X");
+  const [currentTurn, setCurrentTurn] = useState('X');
 
   const checkWinner = (state: string[]) => {
     const win = [
@@ -16,8 +16,8 @@ const App = () => {
       [0, 4, 8],
       [2, 4, 6],
     ];
-    for (let i = 0; i < win.length; i++) {
-      const [a, b, c] = win[i];
+    for (const element of win) {
+      const [a, b, c] = element;
       if (state[a] !== null && state[a] === state[b] && state[a] === state[c])
         return true;
     }
@@ -27,15 +27,16 @@ const App = () => {
   const tieChecker = (numb: number) => {
     filledSquares[numb] = numb;
     const tieIndexes = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-    const isTie = tieIndexes.every((value, index) => value === filledSquares[index]);
+    const isTie = tieIndexes.every(
+      (value, index) => value === filledSquares[index]
+    );
     console.log(isTie);
     if (isTie) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
-  }
+  };
   const handleClick = (index: number) => {
     const stateCopy: string[] = Array.from(state);
     if (stateCopy[index] !== null) return alert(`Choose an empty square`);
@@ -45,25 +46,34 @@ const App = () => {
     const win = checkWinner(stateCopy);
     const tie = tieChecker(index);
     if (win) {
-      const element = document.getElementById("board")!;
-      element.classList.add("backgroundAnimation");
+      const element = document.getElementById('board')!;
+      element.classList.add('backgroundAnimation');
       const element2 = document.getElementById('rows')!;
       element2.classList.add('flipBoard')!;
       const congrats = document.getElementById('congrats')!;
       congrats.classList.add('visible');
-      return
-    }
-    else if (tie) {
+      return;
+    } else if (tie) {
       alert(`Tie game`);
-      return
+      return;
     }
-    setCurrentTurn(currentTurn === "X" ? "O" : "X");
+    setCurrentTurn(currentTurn === 'X' ? 'O' : 'X');
   };
+
+  const resetGame = () => {
+    window.location.reload();
+  };
+
   return (
     <>
       <div className="heading" id="heading">
         <div className="nameOfTheGame">Tic Tac Toe</div>
-        <div className="congrats" id="congrats">We have a winner! Congrats {currentTurn}!</div>
+        <div className="congrats" id="congrats">
+          We have a winner! Congrats {currentTurn}!
+          <button className="playAgain" onClick={resetGame}>
+            Play again
+          </button>
+        </div>
       </div>
       <div className="board" id="board">
         <div className="rows" id="rows">
