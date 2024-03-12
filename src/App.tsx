@@ -8,57 +8,61 @@ const App = () => {
   const [gameOver, setGameOver] = useState(false);
   const [isTie, setIsTie] = useState(false);
 
-  useEffect(() => {
-    if (!gameOver && currentTurn === "O") {
-      // Computer's turn
-      setTimeout(() => {
-        const emptyCells = state.reduce((acc, cell, index) => {
-          if (cell === null) {
-            acc.push(index);
-          }
-          return acc;
-        }, []);
+  // State Variable for Player Loss
+const [playerLost, setPlayerLost] = useState(false);
 
-        // Smart move: Try to win if possible, otherwise block the player
-        let computerMove;
-        for (let i = 0; i < emptyCells.length; i++) {
-          const newState = [...state];
-          newState[emptyCells[i]] = "O";
-          if (checkWinner(newState)) {
-            computerMove = emptyCells[i];
-            break;
-          }
-          newState[emptyCells[i]] = "X";
-          if (checkWinner(newState)) {
-            computerMove = emptyCells[i];
-            break;
-          }
+useEffect(() => {
+  if (!gameOver && currentTurn === "O") {
+    // Computer's turn
+    setTimeout(() => {
+      const emptyCells = state.reduce((acc, cell, index) => {
+        if (cell === null) {
+          acc.push(index);
         }
-        if (!computerMove) {
-          // If no winning or blocking move, choose a random empty cell
-          const randomIndex = Math.floor(Math.random() * emptyCells.length);
-          computerMove = emptyCells[randomIndex];
-        }
+        return acc;
+      }, []);
 
+      // Smart move: Try to win if possible, otherwise block the player
+      let computerMove;
+      for (let i = 0; i < emptyCells.length; i++) {
         const newState = [...state];
-        newState[computerMove] = "O";
-        setState(newState);
-
+        newState[emptyCells[i]] = "O";
         if (checkWinner(newState)) {
-          setGameOver(true);
-          return;
+          computerMove = emptyCells[i];
+          break;
         }
-
-        if (checkTie(newState)) {
-          setIsTie(true);
-          setGameOver(true);
-          return;
+        newState[emptyCells[i]] = "X";
+        if (checkWinner(newState)) {
+          computerMove = emptyCells[i];
+          break;
         }
+      }
+      if (!computerMove) {
+        // If no winning or blocking move, choose a random empty cell
+        const randomIndex = Math.floor(Math.random() * emptyCells.length);
+        computerMove = emptyCells[randomIndex];
+      }
 
-        setCurrentTurn("X");
-      }, 500); // Add a slight delay for the computer's move
-    }
-  }, [state, currentTurn, gameOver]);
+      const newState = [...state];
+      newState[computerMove] = "O";
+      setState(newState);
+
+      if (checkWinner(newState)) {
+        setGameOver(true);
+        setPlayerLost(true); // Set playerLost to true if computer wins
+        return;
+      }
+
+      if (checkTie(newState)) {
+        setIsTie(true);
+        setGameOver(true);
+        return;
+      }
+
+      setCurrentTurn("X");
+    }, 500); // Add a slight delay for the computer's move
+  }
+}, [state, currentTurn, gameOver]);
 
   const checkWinner = (state: string[]) => {
     const winConditions = [
@@ -110,8 +114,12 @@ const App = () => {
       <div className="heading">
         <div className="nameOfTheGame">Tic Tac Toe</div>
         {gameOver && (
-          <div className={`congrats visible gameresult`}>
-            {!isTie ? `We have a winner! Congrats ${currentTurn}!` : "It's a tie!"}
+          <div className={`congrats visible ${playerLost ? "loser" : "gameresult"}`}>
+            {!isTie ? (
+              playerLost ? "You lost! Better luck next time!" : `We have a winner! Congrats ${currentTurn}!`
+            ) : (
+              "It's a tie!"
+            )}
           </div>
         )}
       </div>
