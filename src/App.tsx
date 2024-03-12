@@ -75,6 +75,7 @@ useEffect(() => {
       [2, 4, 6],
       [2, 5, 8]
     ];
+    
     for (let i = 0; i < winConditions.length; i++) {
       const [a, b, c] = winConditions[i];
       if (state[a] !== null && state[a] === state[b] && state[a] === state[c]) {
